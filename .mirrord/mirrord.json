@@ -1,0 +1,25 @@
+{
+  "target": {
+    "namespace": "argocd",
+    "path": "deployment/argocd-server"
+  },
+  "agent": {
+    "flush_connections": false,
+    "log_level": "debug",
+    "ephemeral": true
+  },
+  "feature": {
+    "network": {
+      "incoming": {
+        "mode": "steal",
+         "http_filter": {
+          "header_filter": "^User-Agent: (?!kube-probe)"
+        }
+      },
+      "outgoing": {
+        "tcp": true,
+        "udp": true
+      }
+    }
+  }
+}
